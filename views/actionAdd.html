@@ -1,0 +1,16 @@
+<!--index.art-->
+{{extend './layout.html'}}
+
+{{block 'title'}}{{title}}{{/block}}
+
+{{block 'head'}}
+    <link rel="stylesheet" href="/css/admin.css">
+{{/block}}
+
+{{block 'content'}}
+<h1>{{data}}</h1>
+<a class="btn btn-default" href="/admin">back to page</a>
+{{/block}}
+
+{{block 'scripts'}}
+{{/block}}

@@ -1,0 +1,26 @@
+<!--index.art-->
+{{extend './layout.html'}}
+
+{{block 'title'}}{{title}}{{/block}}
+
+{{block 'head'}}
+    <link rel="stylesheet" href="/css/admin.css">
+{{/block}}
+
+{{block 'content'}}
+<h1>{{data}}</h1>
+<div id='app'>
+    <h1>[[msg]]</h1>
+    <form action="/add" method="POST">
+        <div class="form-group" v-for="(items,idx) in data">
+            <label for="exampleInputEmail1">[[items]]</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" :placeholder="items" :name="items" />
+        </div>
+        <button type="submit" class="btn btn-default">add</button>
+    </form>
+</div>
+{{/block}}
+
+{{block 'scripts'}}
+<script src='/js/addBooks.js'></script>
+{{/block}}

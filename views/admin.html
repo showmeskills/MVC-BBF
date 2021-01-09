@@ -1,0 +1,45 @@
+<!--index.art-->
+{{extend './layout.html'}}
+
+{{block 'title'}}{{title}}{{/block}}
+
+{{block 'head'}}
+    <link rel="stylesheet" href="/css/admin.css">
+{{/block}}
+
+{{block 'content'}}
+<div id='app'>
+    <h1>[[admins]]</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th v-for="(items,idx) in data">
+                    [[items]]
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {{each data}}
+            <tr>
+                <td>{{$value.id}}</td>
+                <td>{{$value.name}}</td>
+                <td>{{$value.author}}</td>
+                <td>{{$value.category}}</td>
+                <td>{{$value.description}}</td>
+                <td>
+                    <a href="/editpage?editid={{$value.id}}">edition</a>|<a href="/delete?editid={{$value.id}}">delete</a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    <a class="btn btn-default" href="/addBooks">add new book</a>
+    <a class="btn btn-default" href="/">last page</a>
+</div>
+{{/block}}
+
+
+{{block 'scripts'}}
+<script src='/js/admin.js'></script>
+{{/block}}
+

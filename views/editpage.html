@@ -1,0 +1,39 @@
+<!--index.art-->
+{{extend './layout.html'}}
+
+{{block 'title'}}{{title}}{{/block}}
+
+{{block 'head'}}
+    <link rel="stylesheet" href="/css/edit.css">
+{{/block}}
+
+{{block 'content'}}
+<div id='app'>
+    <h1>[[msg]]</h1>
+    <form action="/edit" method="POST">
+        <input type="hidden" value="{{data.id}}" name="id">
+        <div class="form-group">
+            <label for="exampleInputEmail1">name</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="name" value="{{data.name}}" name="name">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">author</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="author" value="{{data.author}}" name='author'>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">category</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="category" value="{{data.category}}" name="category">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">description</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="description" value="{{data.description}}" name="description">
+          </div>
+          <button type="submit" class="btn btn-default">submit</button>
+    </form>
+</div>
+{{/block}}
+
+
+{{block 'scripts'}}
+<script src='/js/edit.js'></script>
+{{/block}}
