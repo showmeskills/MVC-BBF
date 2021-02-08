@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./less/index.css">
+    <!-- booststrap css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+     <!-- 提示框样式 -->
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
+    <title>library admin BFF layer demo</title>
+</head>
+
+<body>
+    <div id="app">
+        <div class="wrapper">
+            <h1>{{msg}}</h1>
+            <a class="btn btn-default" href="/addPage.html" target="_self">add a new book</a>
+            <div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th v-for="data in title">{{data}}</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody">
+                        <tr v-for="(data,idx) in dataList" :key='data.id'>
+                            <td>{{data.id}}</td>
+                            <td>{{data.name}}</td>
+                            <td>{{data.author}}</td>
+                            <td>{{data.category}}</td>
+                            <td>{{data.description}}</td>
+                            <td class="options">
+                                <!-- edit and delete -->
+                                <a href="/editPage.html" target="_self" @click="editPage(data.id)">edit</a> |
+                                <a href="javascript:;" @click="deleteData(data.id)">delete</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        </div>
+        <!-- ajax -->
+        <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!-- vue -->
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <!-- https://codeseven.github.io/toastr/ -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+        <script>
+            Vue.prototype.$ = $;
+            new Vue({
+                el: "#app",
+                data() {
+                    return {
+                        msg: 'library admin system renders in front-end',
+                        title: ['ID', 'Bookname', 'author', 'category', 'description', 'options'],
+                        dataList: [],
+                    }
+                },
+                mounted() {
+                    this.getData()
+                        .then(_ => {
+                            this.dataList = _.data
+                        })
+                        .catch(_ => console.log(_))
+                },
+                updated(){
+                    
+                },
+                methods: {
+                    getData() {
+                        return new Promise((resvole, reject) => {
+                            $.ajax({
+                                url: '/api/books',
+                                method: 'GET',
+                                dataType: 'json',
+                                success(data) {
+                                    console.log(data)
+                                    resvole(data)
+                                },
+                                error(err) {
+                                    console.log(err)
+                                    reject(err)
+                                }
+                            })
+                        })
+                    },
+                    editPage(id){
+                        console.log(id)
+                        localStorage.setItem('id',id)
+                    },
+                    deleteData(id){
+                        let _this = this;
+                        let flag = confirm(`Are you sure you want to delete${id} data?`)
+                        if(flag){
+                            $.ajax({
+                                url:`api/books/book/${id}`,
+                                type:'delete',
+                                dataType: 'json',
+                                success(msg){
+                                    toastr.success('delete successfully');
+                                    _this.getData().then(_=>{
+                                        _this.dataList = _.data;
+                                    })
+                                },
+                                error(msg){
+                                    toastr.error('you can not delete data');
+                                }
+                            })
+                       }  
+                    }
+                },
+            })
+
+        </script>
+</body>
+
+</html>

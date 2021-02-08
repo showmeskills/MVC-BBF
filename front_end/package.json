@@ -1,0 +1,26 @@
+{
+  "name": "demoday41",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server:dev": "cross-env NODE_ENV=development nodemon app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "art-template": "^4.13.2",
+    "axios": "^0.21.1",
+    "cross-env": "^7.0.3",
+    "koa": "^2.13.1",
+    "koa-art-template": "^1.1.1",
+    "koa-body": "^4.2.0",
+    "koa-simple-router": "^0.2.0",
+    "koa-static": "^5.0.0",
+    "lodash": "^4.17.20",
+    "log4js": "^6.3.0",
+    "mysql": "^2.18.1",
+    "vue": "^2.6.12"
+  }
+}

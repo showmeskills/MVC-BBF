@@ -1,0 +1,9 @@
+[2021-01-26T18:17:01.539] [ERROR] cheese - ReferenceError: msg is not defined
+    at D:\BaiduNetdiskDownload\00.前端基础入门2005期\GitHubnode\demoday41\front_end\utils\SafeRequest.js:29:21
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+[2021-01-26T18:17:27.504] [ERROR] cheese - ReferenceError: msg is not defined
+    at D:\BaiduNetdiskDownload\00.前端基础入门2005期\GitHubnode\demoday41\front_end\utils\SafeRequest.js:29:21
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+[2021-01-26T18:18:20.099] [ERROR] cheese - ReferenceError: msg is not defined
+    at D:\BaiduNetdiskDownload\00.前端基础入门2005期\GitHubnode\demoday41\front_end\utils\SafeRequest.js:29:21
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)

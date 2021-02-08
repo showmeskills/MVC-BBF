@@ -1,0 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  padding: 30px;
+  background-color: pink;
+}
